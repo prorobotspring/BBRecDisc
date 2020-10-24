@@ -1,0 +1,318 @@
+[2014Nov24 10:05:57,927][INFO ][][onMessage BBRecDiscMDBean.java:120][Mensaje recibido con exito en la cola de SOLICITUD <?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<header>
+		<TraceId>1416839757900</TraceId>
+		<Target>desconexion.rim.roboextravio</Target>
+	</header>
+	<body>
+		<IMSI>734021020209999</IMSI>
+		<MSISDN>584120209999</MSISDN>
+		<Status>Active</Status>
+		<CosName>BlackBerry</CosName>
+	</body>
+</request>]
+[2014Nov24 10:05:57,949][DEBUG][][buildRequest RCHelper.java:56][INICIO de parser XML de entrada]
+[2014Nov24 10:05:57,953][DEBUG][1416839757900][processRequest RC.java:100][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:05:57,954][INFO ][1416839757900][processRequest RC.java:70][Inicio de Servicio: desconexion.rim.roboextravio]
+[2014Nov24 10:05:57,955][DEBUG][1416839757900][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:05:57,956][DEBUG][1416839757900][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:05:57,957][DEBUG][1416839757900][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:05:57,958][DEBUG][1416839757900][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 10:05:57,960][DEBUG][1416839757900][execute RegistrarCambioRIMBDDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 10:05:57,971][DEBUG][1416839757900][execute RegistrarCambioRIMBDDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, Canal=N, IMSI=734021020209999, MSISDN=584120209999, Accion=D, CosName=BlackBerry, Estado=0, Descripcion=In Process}}]
+[2014Nov24 10:05:58,044][INFO ][1416839757900][execute RegistrarCambioRIMBDDelegator.java:137][Registro de desconexion creado con exito en BD hisorico]
+[2014Nov24 10:05:58,055][DEBUG][1416839757900][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: RegistrarAccionRIMBD | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d59b7a | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:05:58,056][DEBUG][1416839757900][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 10:05:58,057][DEBUG][1416839757900][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:05:58,058][DEBUG][1416839757900][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=Registro de desconexion creado con exito en BD hisorico}}]
+[2014Nov24 10:05:58,059][DEBUG][1416839757900][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 10:05:58,061][DEBUG][1416839757900][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 10:05:58,062][DEBUG][1416839757900][buildSOAPBody DesconexionRIMILDelegator.java:232][Comando Ensamblado <?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<soap:Header>
+		<wsse:UsernameToken>
+			<wsse:Username>BBSERV412</wsse:Username>
+			<wsse:Password>digitel412</wsse:Password>
+		</wsse:UsernameToken>
+		<wsa:Action>http://cfomd03:44280/axis/services/SOAPApi</wsa:Action>
+		<wsa:MessageID>1416839757900</wsa:MessageID>
+		<wsa:ReplyTo>
+			<wsa:Address>http://cfglobd05:8601/BBRecDiscWeb/ResponseILService</wsa:Address>
+		</wsa:ReplyTo>
+	</soap:Header>
+	<soap:Body>
+		<REQUEST xmlns="http://www.comptel.com/ilink/api/soap/2005/09"
+			NE_TYPE="HLR" REQ_USER="BBCONCIL" REQ_TYPE="2">
+			<Parameter name="REQ_OBJ" value="2" />
+			<Parameter name="IMSI1" value="734021020209999" />
+			<Parameter name="MSISDN1" value="584120209999" />
+			<Parameter name="SERVICE_REQUEST" value="BB" />
+			<Parameter name="SERVICE_TYPE" value="CANCEL" />
+			<Parameter name="ORDER_NO" value="4120209999" />
+		</REQUEST>
+	</soap:Body>
+</soap:Envelope>
+]
+[2014Nov24 10:05:58,064][DEBUG][1416839757900][execute DesconexionRIMILDelegator.java:165][str: org.apache.commons.httpclient.methods.StringRequestEntity@1868afd]
+[2014Nov24 10:05:58,248][DEBUG][1416839757900][execute DesconexionRIMILDelegator.java:184][Respuesta recibida de IL: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"><soapenv:Body><REQUEST_ACK ACK_SMESSAGE="Request accepted" ACK_STATUS="0" ORDER_NO="4120209999" TASK_NO="67054" xmlns="http://www.comptel.com/ilink/api/soap/2005/09"/></soapenv:Body></soapenv:Envelope>]
+[2014Nov24 10:05:58,263][INFO ][1416839757900][execute DesconexionRIMILDelegator.java:203][RESP Solicitud aprovisionamiento IL: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:05:58,264][DEBUG][1416839757900][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: DesconectarRIMRoboExtravio | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d2900b | ignorar: true | codesToIgnore: []] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:05:58,265][DEBUG][1416839757900][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}} - true]
+[2014Nov24 10:05:58,266][DEBUG][1416839757900][getFilterChain FilterManager.java:62][[ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null]]]
+[2014Nov24 10:05:58,268][DEBUG][1416839757900][getDelegator CommandManager.java:93][local]
+[2014Nov24 10:05:58,269][DEBUG][1416839757900][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=}}]
+[2014Nov24 10:05:58,270][DEBUG][1416839757900][execute LocalClassDelegator.java:87][cond:in - ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839757900, Target=desconexion.rim.roboextravio} | context: {negado=true, lvalor=0, rvalor=0}}]
+[2014Nov24 10:05:58,271][DEBUG][1416839757900][execute Incluido.java:81][Resultado Filtro Incluido: ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:05:58,273][DEBUG][1416839757900][execute LocalClassDelegator.java:94][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:05:58,274][DEBUG][1416839757900][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:05:58,275][DEBUG][1416839757900][execute FilterChain.java:99][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}} - false]
+[2014Nov24 10:05:58,276][INFO ][1416839757900][processRequest RC.java:76][Fin Servicio: desconexion.rim.roboextravio Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:05:58,277][INFO ][1416839757900][onMessage BBRecDiscMDBean.java:124][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:06:11,894][INFO ][1416839771893][doPost ResponseILService.java:69][XML Recibido en WS: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"> <soapenv:Header>  <wsa:MessageID>uuid:105EE149E22BE148</wsa:MessageID>  <wsa:RelatesTo>1416839757900</wsa:RelatesTo>  <wsa:Action>define</wsa:Action>  <wsse:UsernameToken>   <wsse:Username>soapapi</wsse:Username>   <wsse:Password>50apap1</wsse:Password>  </wsse:UsernameToken> </soapenv:Header> <soapenv:Body>  <RESPONSE FINISHED_DATE="20141124094926" PRIORITY="5" RECEIVED_DATE="20141124094913" REQ_USER="BBCONCIL" REQ_TYPE="2" SMESSAGE="General error: Error : 21000 Invalid Request: Service Inactive." SMESSAGE_ID="RSEXE900" STATUS="8" TASK_NO="67054" MAX_TASK_TIME="5" ORDER_NO="4120209999" RETRANSMISSION_FLAG="0" xmlns="http://www.comptel.com/ilink/api/soap/2005/09">   <ResponseParameters>    <Parameter name="NE_TYPE" value="HLR"/>    <Parameter name="ACTIVATION_DATE" value="20141124094925"/>   </ResponseParameters>   <RequestedParameters>    <Parameter name="REQ_OBJ" value="2"/>    <Parameter name="SERVICE_REQUEST" value="BB"/>    <Parameter name="IMSI1" value="734021020209999"/>    <Parameter name="SERVICE_TYPE" value="CANCEL"/>    <Parameter name="MSISDN1" value="584120209999"/>   </RequestedParameters>   <OldParameters/>   <NewParameters/>  </RESPONSE> </soapenv:Body></soapenv:Envelope>]
+[2014Nov24 10:06:11,896][DEBUG][1416839771893][buildResponseIL RCHelper.java:87][INICIO de parser XML de entrada]
+[2014Nov24 10:06:11,913][DEBUG][1416839771893][processResponseIL RC.java:135][ve.com.digitel.bbrecdisc.model.Request{ | header: {} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416839757900, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67054, serviceType=CANCEL}}]
+[2014Nov24 10:06:11,915][INFO ][1416839771893][processRequest RC.java:70][Inicio de Servicio: encolar.response.il]
+[2014Nov24 10:06:11,916][DEBUG][1416839771893][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839771893, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416839757900, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67054, serviceType=CANCEL}}]
+[2014Nov24 10:06:11,918][DEBUG][1416839771893][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:06:11,919][DEBUG][1416839771893][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416839771893, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416839757900, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67054, serviceType=CANCEL}}]
+[2014Nov24 10:06:11,921][DEBUG][1416839771893][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 10:06:11,930][INFO ][1416319556004][onMessage BBRecDiscMDBean.java:131][Mensaje recibido con exito en la cola de SOLICITUD ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416839771893, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416839757900, MSISDN=584120209999, Accion=CANCEL, taskNo=67054, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:06:11,931][INFO ][1416839771893][processRequest RC.java:70][Inicio de Servicio: procesar.response.il]
+[2014Nov24 10:06:11,932][DEBUG][1416839771893][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416839771893, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416839757900, MSISDN=584120209999, Accion=CANCEL, taskNo=67054, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:06:11,933][DEBUG][1416839771893][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:06:11,935][DEBUG][1416839771893][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416839771893, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416839757900, MSISDN=584120209999, Accion=CANCEL, taskNo=67054, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:06:11,936][DEBUG][1416839771893][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 10:06:11,938][DEBUG][1416839771893][execute ActualizarRegistroBDRIMDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 10:06:11,938][DEBUG][1416839771893][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: EncolarResponseIL | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@5d664c | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 10:06:11,939][DEBUG][1416839771893][execute ActualizarRegistroBDRIMDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416839771893, Target=procesar.response.il} | context: {IMSI=734021020209999, traceid=1416839757900, cadenaReconexion=Service Already Active, Accion=CANCEL, taskNo=67054, statusSuccess=9, cadenaDesconexion1=Service Deactivated, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999, Canal=N, cadenaDesconexion2=Service Inactive, MSISDN=584120209999, Estado=8}}]
+[2014Nov24 10:06:11,940][DEBUG][1416839771893][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}} - true]
+[2014Nov24 10:06:11,943][INFO ][1416839771893][processRequest RC.java:76][Fin Servicio: encolar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 10:06:11,944][DEBUG][1416839771893][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 10:06:11,945][INFO ][1416839771893][doPost ResponseILService.java:73][Response Generado: <?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+	<soapenv:Body>
+		<RESPONSE_ACK xmlns="http://www.comptel.com/ilink/api/soap/2005/09" 
+		ACK_STATUS="0"
+		ACK_SMESSAGE="Proceso completado con exito"/>
+	</soapenv:Body>
+</soapenv:Envelope>
+]
+[2014Nov24 10:06:11,946][INFO ][1416839771893][execute ActualizarRegistroBDRIMDelegator.java:171][Actualizacion de registro realizada con exito en BD hisorico]
+[2014Nov24 10:06:11,948][DEBUG][1416839771893][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: ActualizarStatusRIM | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d6f9b4 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:06:11,949][DEBUG][1416839771893][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 10:06:11,950][INFO ][1416839771893][processRequest RC.java:76][Fin Servicio: procesar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:06:11,951][INFO ][1416839771893][onMessage BBRecDiscMDBean.java:135][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:35:37,730][INFO ][1416839771893][onMessage BBRecDiscMDBean.java:120][Mensaje recibido con exito en la cola de SOLICITUD <?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<header>
+		<TraceId>1416841537685</TraceId>
+		<Target>desconexion.rim.roboextravio</Target>
+	</header>
+	<body>
+		<IMSI>734021020209999</IMSI>
+		<MSISDN>584120209999</MSISDN>
+		<Status>Active</Status>
+		<CosName>BlackBerry</CosName>
+	</body>
+</request>]
+[2014Nov24 10:35:37,741][DEBUG][1416839771893][buildRequest RCHelper.java:56][INICIO de parser XML de entrada]
+[2014Nov24 10:35:37,745][DEBUG][1416841537685][processRequest RC.java:100][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:35:37,746][INFO ][1416841537685][processRequest RC.java:70][Inicio de Servicio: desconexion.rim.roboextravio]
+[2014Nov24 10:35:37,747][DEBUG][1416841537685][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:35:37,748][DEBUG][1416841537685][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:35:37,749][DEBUG][1416841537685][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 10:35:37,750][DEBUG][1416841537685][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 10:35:37,752][DEBUG][1416841537685][execute RegistrarCambioRIMBDDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 10:35:37,754][DEBUG][1416841537685][execute RegistrarCambioRIMBDDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, Canal=N, IMSI=734021020209999, MSISDN=584120209999, Accion=D, CosName=BlackBerry, Estado=0, Descripcion=In Process}}]
+[2014Nov24 10:35:37,759][INFO ][1416841537685][execute RegistrarCambioRIMBDDelegator.java:137][Registro de desconexion creado con exito en BD hisorico]
+[2014Nov24 10:35:37,760][DEBUG][1416841537685][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: RegistrarAccionRIMBD | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d59b7a | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:35:37,761][DEBUG][1416841537685][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 10:35:37,762][DEBUG][1416841537685][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:35:37,763][DEBUG][1416841537685][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=Registro de desconexion creado con exito en BD hisorico}}]
+[2014Nov24 10:35:37,765][DEBUG][1416841537685][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 10:35:37,766][DEBUG][1416841537685][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 10:35:37,767][DEBUG][1416841537685][buildSOAPBody DesconexionRIMILDelegator.java:232][Comando Ensamblado <?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<soap:Header>
+		<wsse:UsernameToken>
+			<wsse:Username>BBSERV412</wsse:Username>
+			<wsse:Password>digitel412</wsse:Password>
+		</wsse:UsernameToken>
+		<wsa:Action>http://cfomd03:44280/axis/services/SOAPApi</wsa:Action>
+		<wsa:MessageID>1416841537685</wsa:MessageID>
+		<wsa:ReplyTo>
+			<wsa:Address>http://cfglobd05:8601/BBRecDiscWeb/ResponseILService</wsa:Address>
+		</wsa:ReplyTo>
+	</soap:Header>
+	<soap:Body>
+		<REQUEST xmlns="http://www.comptel.com/ilink/api/soap/2005/09"
+			NE_TYPE="HLR" REQ_USER="BBCONCIL" REQ_TYPE="2">
+			<Parameter name="REQ_OBJ" value="2" />
+			<Parameter name="IMSI1" value="734021020209999" />
+			<Parameter name="MSISDN1" value="584120209999" />
+			<Parameter name="SERVICE_REQUEST" value="BB" />
+			<Parameter name="SERVICE_TYPE" value="CANCEL" />
+			<Parameter name="ORDER_NO" value="4120209999" />
+		</REQUEST>
+	</soap:Body>
+</soap:Envelope>
+]
+[2014Nov24 10:35:37,769][DEBUG][1416841537685][execute DesconexionRIMILDelegator.java:165][str: org.apache.commons.httpclient.methods.StringRequestEntity@193a16b]
+[2014Nov24 10:35:38,362][DEBUG][1416841537685][execute DesconexionRIMILDelegator.java:184][Respuesta recibida de IL: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"><soapenv:Body><REQUEST_ACK ACK_SMESSAGE="Request accepted" ACK_STATUS="0" ORDER_NO="4120209999" TASK_NO="67056" xmlns="http://www.comptel.com/ilink/api/soap/2005/09"/></soapenv:Body></soapenv:Envelope>]
+[2014Nov24 10:35:38,370][INFO ][1416841537685][execute DesconexionRIMILDelegator.java:203][RESP Solicitud aprovisionamiento IL: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:35:38,371][DEBUG][1416841537685][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: DesconectarRIMRoboExtravio | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d2900b | ignorar: true | codesToIgnore: []] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:35:38,372][DEBUG][1416841537685][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}} - true]
+[2014Nov24 10:35:38,373][DEBUG][1416841537685][getFilterChain FilterManager.java:62][[ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null]]]
+[2014Nov24 10:35:38,374][DEBUG][1416841537685][getDelegator CommandManager.java:93][local]
+[2014Nov24 10:35:38,376][DEBUG][1416841537685][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=}}]
+[2014Nov24 10:35:38,377][DEBUG][1416841537685][execute LocalClassDelegator.java:87][cond:in - ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841537685, Target=desconexion.rim.roboextravio} | context: {negado=true, lvalor=0, rvalor=0}}]
+[2014Nov24 10:35:38,378][DEBUG][1416841537685][execute Incluido.java:81][Resultado Filtro Incluido: ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:35:38,379][DEBUG][1416841537685][execute LocalClassDelegator.java:94][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:35:38,381][DEBUG][1416841537685][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 10:35:38,382][DEBUG][1416841537685][execute FilterChain.java:99][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}} - false]
+[2014Nov24 10:35:38,383][INFO ][1416841537685][processRequest RC.java:76][Fin Servicio: desconexion.rim.roboextravio Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:35:38,384][INFO ][1416841537685][onMessage BBRecDiscMDBean.java:124][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 10:35:51,388][INFO ][1416841551387][doPost ResponseILService.java:69][XML Recibido en WS: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"> <soapenv:Header>  <wsa:MessageID>uuid:105F0149E247089C</wsa:MessageID>  <wsa:RelatesTo>1416841537685</wsa:RelatesTo>  <wsa:Action>define</wsa:Action>  <wsse:UsernameToken>   <wsse:Username>soapapi</wsse:Username>   <wsse:Password>50apap1</wsse:Password>  </wsse:UsernameToken> </soapenv:Header> <soapenv:Body>  <RESPONSE FINISHED_DATE="20141124101906" PRIORITY="5" RECEIVED_DATE="20141124101853" REQ_USER="BBCONCIL" REQ_TYPE="2" SMESSAGE="General error: Error : 21000 Invalid Request: Service Inactive." SMESSAGE_ID="RSEXE900" STATUS="8" TASK_NO="67056" MAX_TASK_TIME="5" ORDER_NO="4120209999" RETRANSMISSION_FLAG="0" xmlns="http://www.comptel.com/ilink/api/soap/2005/09">   <ResponseParameters>    <Parameter name="NE_TYPE" value="HLR"/>    <Parameter name="ACTIVATION_DATE" value="20141124101904"/>   </ResponseParameters>   <RequestedParameters>    <Parameter name="REQ_OBJ" value="2"/>    <Parameter name="SERVICE_REQUEST" value="BB"/>    <Parameter name="IMSI1" value="734021020209999"/>    <Parameter name="SERVICE_TYPE" value="CANCEL"/>    <Parameter name="MSISDN1" value="584120209999"/>   </RequestedParameters>   <OldParameters/>   <NewParameters/>  </RESPONSE> </soapenv:Body></soapenv:Envelope>]
+[2014Nov24 10:35:51,390][DEBUG][1416841551387][buildResponseIL RCHelper.java:87][INICIO de parser XML de entrada]
+[2014Nov24 10:35:51,464][DEBUG][1416841551387][processResponseIL RC.java:135][ve.com.digitel.bbrecdisc.model.Request{ | header: {} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416841537685, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67056, serviceType=CANCEL}}]
+[2014Nov24 10:35:51,466][INFO ][1416841551387][processRequest RC.java:70][Inicio de Servicio: encolar.response.il]
+[2014Nov24 10:35:51,467][DEBUG][1416841551387][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841551387, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416841537685, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67056, serviceType=CANCEL}}]
+[2014Nov24 10:35:51,469][DEBUG][1416841551387][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:35:51,470][DEBUG][1416841551387][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416841551387, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416841537685, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67056, serviceType=CANCEL}}]
+[2014Nov24 10:35:51,472][DEBUG][1416841551387][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 10:35:51,480][INFO ][1416839771893][onMessage BBRecDiscMDBean.java:131][Mensaje recibido con exito en la cola de SOLICITUD ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416841551387, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416841537685, MSISDN=584120209999, Accion=CANCEL, taskNo=67056, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:35:51,481][INFO ][1416841551387][processRequest RC.java:70][Inicio de Servicio: procesar.response.il]
+[2014Nov24 10:35:51,482][DEBUG][1416841551387][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: EncolarResponseIL | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@5d664c | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 10:35:51,482][DEBUG][1416841551387][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416841551387, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416841537685, MSISDN=584120209999, Accion=CANCEL, taskNo=67056, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:35:51,484][DEBUG][1416841551387][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}} - true]
+[2014Nov24 10:35:51,485][DEBUG][1416841551387][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 10:35:51,486][INFO ][1416841551387][processRequest RC.java:76][Fin Servicio: encolar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 10:35:51,487][DEBUG][1416841551387][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416841551387, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416841537685, MSISDN=584120209999, Accion=CANCEL, taskNo=67056, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 10:35:51,488][DEBUG][1416841551387][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 10:35:51,490][DEBUG][1416841551387][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 10:35:51,491][INFO ][1416841551387][doPost ResponseILService.java:73][Response Generado: <?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+	<soapenv:Body>
+		<RESPONSE_ACK xmlns="http://www.comptel.com/ilink/api/soap/2005/09" 
+		ACK_STATUS="0"
+		ACK_SMESSAGE="Proceso completado con exito"/>
+	</soapenv:Body>
+</soapenv:Envelope>
+]
+[2014Nov24 10:35:51,493][DEBUG][1416841551387][execute ActualizarRegistroBDRIMDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 10:35:51,495][DEBUG][1416841551387][execute ActualizarRegistroBDRIMDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416841551387, Target=procesar.response.il} | context: {IMSI=734021020209999, traceid=1416841537685, cadenaReconexion=Service Already Active, Accion=CANCEL, taskNo=67056, statusSuccess=9, cadenaDesconexion1=Service Deactivated, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999, Canal=N, cadenaDesconexion2=Service Inactive, MSISDN=584120209999, Estado=8}}]
+[2014Nov24 10:35:51,500][INFO ][1416841551387][execute ActualizarRegistroBDRIMDelegator.java:171][Actualizacion de registro realizada con exito en BD hisorico]
+[2014Nov24 10:35:51,502][DEBUG][1416841551387][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: ActualizarStatusRIM | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d6f9b4 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:35:51,503][DEBUG][1416841551387][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 10:35:51,504][INFO ][1416841551387][processRequest RC.java:76][Fin Servicio: procesar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 10:35:51,505][INFO ][1416841551387][onMessage BBRecDiscMDBean.java:135][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 11:10:02,551][INFO ][1416841551387][onMessage BBRecDiscMDBean.java:120][Mensaje recibido con exito en la cola de SOLICITUD <?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<header>
+		<TraceId>1416843602534</TraceId>
+		<Target>desconexion.rim.roboextravio</Target>
+	</header>
+	<body>
+		<IMSI>734021020209999</IMSI>
+		<MSISDN>584120209999</MSISDN>
+		<Status>Active</Status>
+		<CosName>BlackBerry</CosName>
+	</body>
+</request>]
+[2014Nov24 11:10:02,562][DEBUG][1416841551387][buildRequest RCHelper.java:56][INICIO de parser XML de entrada]
+[2014Nov24 11:10:02,565][DEBUG][1416843602534][processRequest RC.java:100][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 11:10:02,566][INFO ][1416843602534][processRequest RC.java:70][Inicio de Servicio: desconexion.rim.roboextravio]
+[2014Nov24 11:10:02,567][DEBUG][1416843602534][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 11:10:02,568][DEBUG][1416843602534][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 11:10:02,569][DEBUG][1416843602534][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, CosName=BlackBerry}}]
+[2014Nov24 11:10:02,571][DEBUG][1416843602534][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 11:10:02,572][DEBUG][1416843602534][execute RegistrarCambioRIMBDDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 11:10:02,574][DEBUG][1416843602534][execute RegistrarCambioRIMBDDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, Canal=N, IMSI=734021020209999, MSISDN=584120209999, Accion=D, CosName=BlackBerry, Estado=0, Descripcion=In Process}}]
+[2014Nov24 11:10:02,582][INFO ][1416843602534][execute RegistrarCambioRIMBDDelegator.java:137][Registro de desconexion creado con exito en BD hisorico]
+[2014Nov24 11:10:02,583][DEBUG][1416843602534][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: RegistrarAccionRIMBD | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d59b7a | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 11:10:02,585][DEBUG][1416843602534][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Registro de desconexion creado con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 11:10:02,586][DEBUG][1416843602534][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 11:10:02,587][DEBUG][1416843602534][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=Registro de desconexion creado con exito en BD hisorico}}]
+[2014Nov24 11:10:02,588][DEBUG][1416843602534][execute CommandChain.java:129][Servicio a EJECUTAR desconexion.rim.roboextravio]
+[2014Nov24 11:10:02,589][DEBUG][1416843602534][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 11:10:02,591][DEBUG][1416843602534][buildSOAPBody DesconexionRIMILDelegator.java:232][Comando Ensamblado <?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+	xmlns:wsa="http://www.w3.org/2005/08/addressing"
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+	<soap:Header>
+		<wsse:UsernameToken>
+			<wsse:Username>BBSERV412</wsse:Username>
+			<wsse:Password>digitel412</wsse:Password>
+		</wsse:UsernameToken>
+		<wsa:Action>http://cfomd03:44280/axis/services/SOAPApi</wsa:Action>
+		<wsa:MessageID>1416843602534</wsa:MessageID>
+		<wsa:ReplyTo>
+			<wsa:Address>http://cfglobd05:8601/BBRecDiscWeb/ResponseILService</wsa:Address>
+		</wsa:ReplyTo>
+	</soap:Header>
+	<soap:Body>
+		<REQUEST xmlns="http://www.comptel.com/ilink/api/soap/2005/09"
+			NE_TYPE="HLR" REQ_USER="BBCONCIL" REQ_TYPE="2">
+			<Parameter name="REQ_OBJ" value="2" />
+			<Parameter name="IMSI1" value="734021020209999" />
+			<Parameter name="MSISDN1" value="584120209999" />
+			<Parameter name="SERVICE_REQUEST" value="BB" />
+			<Parameter name="SERVICE_TYPE" value="CANCEL" />
+			<Parameter name="ORDER_NO" value="4120209999" />
+		</REQUEST>
+	</soap:Body>
+</soap:Envelope>
+]
+[2014Nov24 11:10:02,593][DEBUG][1416843602534][execute DesconexionRIMILDelegator.java:165][str: org.apache.commons.httpclient.methods.StringRequestEntity@231f69]
+[2014Nov24 11:10:02,713][DEBUG][1416843602534][execute DesconexionRIMILDelegator.java:184][Respuesta recibida de IL: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"><soapenv:Body><REQUEST_ACK ACK_SMESSAGE="Request accepted" ACK_STATUS="0" ORDER_NO="4120209999" TASK_NO="67061" xmlns="http://www.comptel.com/ilink/api/soap/2005/09"/></soapenv:Body></soapenv:Envelope>]
+[2014Nov24 11:10:02,721][INFO ][1416843602534][execute DesconexionRIMILDelegator.java:203][RESP Solicitud aprovisionamiento IL: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 11:10:02,722][DEBUG][1416843602534][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: DesconectarRIMRoboExtravio | service: desconexion.rim.roboextravio | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d2900b | ignorar: true | codesToIgnore: []] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 11:10:02,723][DEBUG][1416843602534][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}} - true]
+[2014Nov24 11:10:02,725][DEBUG][1416843602534][getFilterChain FilterManager.java:62][[ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null]]]
+[2014Nov24 11:10:02,726][DEBUG][1416843602534][getDelegator CommandManager.java:93][local]
+[2014Nov24 11:10:02,727][DEBUG][1416843602534][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {Status=Active, IMSI=734021020209999, MSISDN=584120209999, _rc_resultado=0, CosName=BlackBerry, _rc_razon=}}]
+[2014Nov24 11:10:02,728][DEBUG][1416843602534][execute LocalClassDelegator.java:87][cond:in - ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843602534, Target=desconexion.rim.roboextravio} | context: {negado=true, lvalor=0, rvalor=0}}]
+[2014Nov24 11:10:02,730][DEBUG][1416843602534][execute Incluido.java:81][Resultado Filtro Incluido: ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 11:10:02,731][DEBUG][1416843602534][execute LocalClassDelegator.java:94][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 11:10:02,732][DEBUG][1416843602534][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: local | service: cond:in | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@d0f592 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}}]
+[2014Nov24 11:10:02,733][DEBUG][1416843602534][execute FilterChain.java:99][ve.com.digitel.bssint.ReturnValue{ | condCode: 1 | reasonCode: Codigo 0 no se encuentra incluido en la lista de valores. Filtro False | info:  | vto: {}} - false]
+[2014Nov24 11:10:02,734][INFO ][1416843602534][processRequest RC.java:76][Fin Servicio: desconexion.rim.roboextravio Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 11:10:02,735][INFO ][1416843602534][onMessage BBRecDiscMDBean.java:124][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode:  | info: 4120209999 | vto: {}}]
+[2014Nov24 11:10:15,834][INFO ][1416843615833][doPost ResponseILService.java:69][XML Recibido en WS: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"> <soapenv:Header>  <wsa:MessageID>uuid:105F5149E266890B</wsa:MessageID>  <wsa:RelatesTo>1416843602534</wsa:RelatesTo>  <wsa:Action>define</wsa:Action>  <wsse:UsernameToken>   <wsse:Username>soapapi</wsse:Username>   <wsse:Password>50apap1</wsse:Password>  </wsse:UsernameToken> </soapenv:Header> <soapenv:Body>  <RESPONSE FINISHED_DATE="20141124105330" PRIORITY="5" RECEIVED_DATE="20141124105317" REQ_USER="BBCONCIL" REQ_TYPE="2" SMESSAGE="General error: Error : 21000 Invalid Request: Service Inactive." SMESSAGE_ID="RSEXE900" STATUS="8" TASK_NO="67061" MAX_TASK_TIME="5" ORDER_NO="4120209999" RETRANSMISSION_FLAG="0" xmlns="http://www.comptel.com/ilink/api/soap/2005/09">   <ResponseParameters>    <Parameter name="NE_TYPE" value="HLR"/>    <Parameter name="ACTIVATION_DATE" value="20141124105329"/>   </ResponseParameters>   <RequestedParameters>    <Parameter name="REQ_OBJ" value="2"/>    <Parameter name="SERVICE_REQUEST" value="BB"/>    <Parameter name="IMSI1" value="734021020209999"/>    <Parameter name="SERVICE_TYPE" value="CANCEL"/>    <Parameter name="MSISDN1" value="584120209999"/>   </RequestedParameters>   <OldParameters/>   <NewParameters/>  </RESPONSE> </soapenv:Body></soapenv:Envelope>]
+[2014Nov24 11:10:15,836][DEBUG][1416843615833][buildResponseIL RCHelper.java:87][INICIO de parser XML de entrada]
+[2014Nov24 11:10:15,844][DEBUG][1416843615833][processResponseIL RC.java:135][ve.com.digitel.bbrecdisc.model.Request{ | header: {} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416843602534, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67061, serviceType=CANCEL}}]
+[2014Nov24 11:10:15,846][INFO ][1416843615833][processRequest RC.java:70][Inicio de Servicio: encolar.response.il]
+[2014Nov24 11:10:15,847][DEBUG][1416843615833][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843615833, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416843602534, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67061, serviceType=CANCEL}}]
+[2014Nov24 11:10:15,848][DEBUG][1416843615833][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 11:10:15,850][DEBUG][1416843615833][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {TraceId=1416843615833, Target=encolar.response.il} | context: {ackMessage=null, imsi=734021020209999, msisdn=584120209999, relatesTo=1416843602534, sMessage=General error: Error : 21000 Invalid Request: Service Inactive., ackStatus=null, order=4120209999, status=8, task=67061, serviceType=CANCEL}}]
+[2014Nov24 11:10:15,851][DEBUG][1416843615833][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 11:10:15,857][INFO ][][onMessage BBRecDiscMDBean.java:131][Mensaje recibido con exito en la cola de SOLICITUD ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416843615833, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416843602534, MSISDN=584120209999, Accion=CANCEL, taskNo=67061, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 11:10:15,858][INFO ][1416843615833][processRequest RC.java:70][Inicio de Servicio: procesar.response.il]
+[2014Nov24 11:10:15,858][DEBUG][1416843615833][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: EncolarResponseIL | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@5d664c | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 11:10:15,859][DEBUG][1416843615833][execute CommandChain.java:95][Parametros de entrada: ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416843615833, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416843602534, MSISDN=584120209999, Accion=CANCEL, taskNo=67061, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 11:10:15,860][DEBUG][1416843615833][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}} - true]
+[2014Nov24 11:10:15,861][DEBUG][1416843615833][getFilterChain FilterManager.java:62][[]]
+[2014Nov24 11:10:15,863][INFO ][1416843615833][processRequest RC.java:76][Fin Servicio: encolar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Proceso completado con exito | info: ActivationOrder enviado a la cola | vto: {}}]
+[2014Nov24 11:10:15,864][DEBUG][1416843615833][execute FilterChain.java:73][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416843615833, Target=procesar.response.il} | context: {IMSI=734021020209999, Canal=N, traceid=1416843602534, MSISDN=584120209999, Accion=CANCEL, taskNo=67061, Estado=8, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999}}]
+[2014Nov24 11:10:15,865][DEBUG][1416843615833][assembly NameSustitutionCmdAdapter.java:243][Ensamblando lista de COMPONENTES para la construccion del COMANDO]
+[2014Nov24 11:10:15,866][DEBUG][1416843615833][execute CommandChain.java:129][Servicio a EJECUTAR procesar.response.il]
+[2014Nov24 11:10:15,867][INFO ][1416843615833][doPost ResponseILService.java:73][Response Generado: <?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+	<soapenv:Body>
+		<RESPONSE_ACK xmlns="http://www.comptel.com/ilink/api/soap/2005/09" 
+		ACK_STATUS="0"
+		ACK_SMESSAGE="Proceso completado con exito"/>
+	</soapenv:Body>
+</soapenv:Envelope>
+]
+[2014Nov24 11:10:15,869][DEBUG][1416843615833][execute ActualizarRegistroBDRIMDelegator.java:118][Se obtuvo la conexion al DataSource. Accesando a la Base de Datos]
+[2014Nov24 11:10:15,871][DEBUG][1416843615833][execute ActualizarRegistroBDRIMDelegator.java:123][ve.com.digitel.bbrecdisc.model.Request{ | header: {OldTarget=encolar.response.il, TraceId=1416843615833, Target=procesar.response.il} | context: {IMSI=734021020209999, traceid=1416843602534, cadenaReconexion=Service Already Active, Accion=CANCEL, taskNo=67061, statusSuccess=9, cadenaDesconexion1=Service Deactivated, Descripcion=General error: Error : 21000 Invalid Request: Service Inactive., orderNo=4120209999, Canal=N, cadenaDesconexion2=Service Inactive, MSISDN=584120209999, Estado=8}}]
+[2014Nov24 11:10:15,878][INFO ][1416843615833][execute ActualizarRegistroBDRIMDelegator.java:171][Actualizacion de registro realizada con exito en BD hisorico]
+[2014Nov24 11:10:15,879][DEBUG][1416843615833][isResultSucced AbstractCommand.java:40][ve.com.digitel.bbrecdisc.rc.config.CommandConfig[ | delegator: ActualizarStatusRIM | service: procesar.response.il | conditions: [] | parameters: ve.com.digitel.bbrecdisc.model.ParametersConfig@1d6f9b4 | ignorar: false | codesToIgnore: null] - ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 11:10:15,881][DEBUG][1416843615833][execute CommandChain.java:137][ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}} - true]
+[2014Nov24 11:10:15,882][INFO ][1416843615833][processRequest RC.java:76][Fin Servicio: procesar.response.il Respuesta: ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]
+[2014Nov24 11:10:15,883][INFO ][1416843615833][onMessage BBRecDiscMDBean.java:135][Solicitud procesada ve.com.digitel.bssint.ReturnValue{ | condCode: 0 | reasonCode: Actualizacion de registro realizada con exito en BD hisorico | info:  | vto: {}}]

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+	<header>
+		<TraceId>${traceId}</TraceId>
+		<Target>reconexion.rim.roboextravio</Target>
+	</header>
+	<body>
+		<IMSI>${imsi}</IMSI>
+		<MSISDN>${msisdn}</MSISDN>
+		<Status>Active</Status>
+		<CosName>BlackBerry 50MB</CosName>
+	</body>
+</request>

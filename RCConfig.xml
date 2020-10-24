@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<annotation>
+		<documentation>Configuracion de los servicios para la Desconexion y Reconexion BlackBerry</documentation>
+		<version>1.0</version>
+	</annotation>
+	<servicios>
+
+		<servicio id="desconexion.rim.roboextravio">
+			<annotation>
+				<documentation>
+					Comando para la desconexion de un suscriptor de RIM por cambio de estado a Robo y/o Extravio
+				</documentation>
+			</annotation>
+			<comandos>
+				<!-- <comando delegador="VerificarStatusRIM" servicio="desconexion.rim.roboextravio">
+					<parametros>
+					<parametro formal="MSISDN" actual="MSISDN" />
+					<parametro formal="IMSI" actual="IMSI" />
+					<parametro formal="Status" actual="Status" />
+					<parametro formal="CosName" actual="CosName" />
+					<parametro formal="Accion" constante="D" />
+					<parametro formal="Canal" constante="N" />
+					</parametros>
+					</comando> -->
+				<comando delegador="RegistrarAccionRIMBD" servicio="desconexion.rim.roboextravio">
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="D" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="Estado" constante="0" />
+						<parametro formal="Descripcion" constante="In Process" />
+					</parametros>
+				</comando>
+				<comando delegador="DesconectarRIMRoboExtravio" servicio="desconexion.rim.roboextravio">
+					<parametros ambito="global">
+						<!-- <parametro formal="SERVICE_TYPE" constante="CANCEL" /> -->
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="ActualizarStatusErrorIL" servicio="desconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:in">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="_rc_resultado" />
+								<parametro formal="rvalor" constante="0" />
+								<parametro formal="negado" constante="true" type="java.lang.Boolean" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="D" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Estado" actual="_rc_resultado" />
+						<parametro formal="Descripcion" actual="_rc_razon" />
+					</parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+		<servicio id="validar.tipo.reconexion">
+			<annotation>
+				<documentation>Comando para la validacion del tipo de reconexion a realizar</documentation>
+			</annotation>
+			<comandos>
+				<comando delegador="PreviousStateValidate" servicio="validar.tipo.reconexion">
+					<parametros>
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Status" actual="Status" />
+						<parametro formal="CosName" actual="CosName" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="local" servicio="stm:setAll">
+					<parametros ambito="local">
+						<parametro formal="nameList" constante="_rc_resultado_validate _rc_razon_validate" />
+						<parametro formal="rvalor_1" actual="_rc_resultado" />
+						<parametro formal="rvalor_2" actual="_rc_razon" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<!-- Si el resultado es cero, el previousState es Robo y/o extravio -->
+				<!--<comando delegador="EncolarSolicitudReconexion" servicio="reconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:in">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="_rc_resultado_validate" />
+								<parametro formal="rvalor" constante="0" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global"></parametros>
+				</comando>-->
+				<!-- Si el resultado es uno, el previousState no es Robo y/o extravio -->
+				<comando delegador="EncolarSolicitudReconexion" servicio="reconexion.rim.recarga">
+					<condiciones>
+						<comando delegador="local" servicio="cond:in">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="_rc_resultado_validate" />
+								<parametro formal="rvalor" constante="1" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global"></parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+		<servicio id="reconexion.rim.roboextravio">
+			<annotation>
+				<documentation>
+					Comando para la reconexion de un suscriptor en RIM por cambio de estado: Activo proveniente de Robo
+					y/o Extravio
+				</documentation>
+			</annotation>
+			<comandos>
+				<comando delegador="RegistrarAccionRIMBD" servicio="reconexion.rim.roboextravio">
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="R" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="Estado" constante="0" />
+						<parametro formal="Descripcion" constante="In Process" />
+					</parametros>
+				</comando>
+				<comando delegador="ConectarRIMRoboExtravio" servicio="reconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:inSplit">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="CosName" />
+								<parametro formal="rvalor"
+									constante="BlackBerry 50MB ZF;BlackBerry Ilimitado;BlackBerry 50MB;BlackBerry Ilimitado ZF" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="SERVICE_PLAN" constante="Prosumer Prepaid B" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="ConectarRIMRoboExtravio" servicio="reconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:inSplit">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="CosName" />
+								<parametro formal="rvalor" constante="BlackBerry Social;BlackBerry Social ZF" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="SERVICE_PLAN" constante="BIS Social Prepaid" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="ActualizarStatusErrorIL" servicio="desconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:in">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="_rc_resultado" />
+								<parametro formal="rvalor" constante="0" />
+								<parametro formal="negado" constante="true" type="java.lang.Boolean" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="R" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Estado" actual="_rc_resultado" />
+						<parametro formal="Descripcion" actual="_rc_razon" />
+					</parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+		<servicio id="reconexion.rim.recarga">
+			<annotation>
+				<documentation>Comando para la reconexion de un suscriptor en RIM por RECARGA</documentation>
+			</annotation>
+			<comandos>
+				<comando delegador="VerificarStatusRIM" servicio="reconexion.rim.roboextravio">
+					<parametros>
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Status" actual="Status" />
+						<parametro formal="CosName" actual="CosName" />
+						<parametro formal="Accion" constante="R" />
+						<parametro formal="Canal" constante="N" />
+					</parametros>
+				</comando>
+				<comando delegador="InformacionBasicaRTBS" servicio="validar.suscriptor.rtbs">
+					<parametros ambito="global"></parametros>
+				</comando>
+				<comando delegador="RecargasMTRRTBS" servicio="validar.recargamtr.rtbs">
+					<parametros ambito="global"></parametros>
+				</comando>
+				<comando delegador="RegistrarAccionRIMBD" servicio="reconexion.rim.roboextravio">
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="R" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="Estado" constante="0" />
+						<parametro formal="Descripcion" constante="In Process" />
+					</parametros>
+				</comando>
+				<comando delegador="ConectarRIMRoboExtravio" servicio="reconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:inSplit">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="CosName" />
+								<parametro formal="rvalor"
+									constante="BlackBerry 50MB ZF;BlackBerry Ilimitado;BlackBerry 50MB;BlackBerry Ilimitado ZF" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="SERVICE_PLAN" constante="Prosumer Prepaid B" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="ConectarRIMRoboExtravio" servicio="reconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:inSplit">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="CosName" />
+								<parametro formal="rvalor" constante="BlackBerry Social;BlackBerry Social ZF" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="SERVICE_PLAN" constante="BIS Social Prepaid" />
+					</parametros>
+					<retorno ignorar="y" codes="*" />
+				</comando>
+				<comando delegador="ActualizarStatusErrorIL" servicio="desconexion.rim.roboextravio">
+					<condiciones>
+						<comando delegador="local" servicio="cond:in">
+							<parametros ambito="local">
+								<parametro formal="lvalor" actual="_rc_resultado" />
+								<parametro formal="rvalor" constante="0" />
+								<parametro formal="negado" constante="true" type="java.lang.Boolean" />
+							</parametros>
+						</comando>
+					</condiciones>
+					<parametros ambito="global">
+						<parametro formal="Accion" constante="R" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Estado" actual="_rc_resultado" />
+						<parametro formal="Descripcion" actual="_rc_razon" />
+					</parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+
+		<!-- SERVICIOS ASOCIADOS A LA RESPUESTA ENVIADA DESDE IL -->
+		<servicio id="encolar.response.il">
+			<annotation>
+				<documentation>Comando para el encolamiento del response recibido de IL</documentation>
+			</annotation>
+			<comandos>
+				<comando delegador="EncolarResponseIL" servicio="procesar.response.il">
+					<parametros>
+						<parametro formal="MSISDN" actual="msisdn" />
+						<parametro formal="IMSI" actual="imsi" />
+						<parametro formal="Accion" actual="serviceType" />
+						<parametro formal="Estado" actual="status" />
+						<parametro formal="Canal" constante="N" />
+						<parametro formal="Descripcion" actual="sMessage" />
+						<parametro formal="traceid" actual="relatesTo" />
+						<parametro formal="orderNo" actual="order" />
+						<parametro formal="taskNo" actual="task" />
+					</parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+		<servicio id="procesar.response.il">
+			<annotation>
+				<documentation>Comando para el procesamiento del response de IL</documentation>
+			</annotation>
+			<comandos>
+				<comando delegador="ActualizarStatusRIM" servicio="procesar.response.il">
+					<parametros>
+						<parametro formal="MSISDN" actual="MSISDN" />
+						<parametro formal="IMSI" actual="IMSI" />
+						<parametro formal="Accion" actual="Accion" />
+						<parametro formal="Estado" actual="Estado" />
+						<parametro formal="Canal" actual="Canal" />
+						<parametro formal="Descripcion" actual="Descripcion" />
+						<parametro formal="traceid" actual="traceid" />
+						<parametro formal="orderNo" actual="orderNo" />
+						<parametro formal="taskNo" actual="taskNo" />
+						<parametro formal="cadenaDesconexion1" constante="Service Deactivated" />
+						<parametro formal="cadenaDesconexion2" constante="Service Inactive" />
+						<parametro formal="cadenaReconexion" constante="Service Already Active" />
+						<parametro formal="statusSuccess" constante="9" />
+					</parametros>
+				</comando>
+			</comandos>
+		</servicio>
+
+
+
+
+	</servicios>
+
+	<delegadores>
+		<delegador id="local" constructor="class" nombre="ve.com.digitel.bbrecdisc.delegator.LocalClassDelegator">
+			<servicioDelegado id="cond:in" nombre="ve.com.digitel.bbrecdisc.filtros.Incluido" />
+			<servicioDelegado id="cond:inSplit" nombre="ve.com.digitel.bbrecdisc.filtros.IncluidoSplit" />
+			<servicioDelegado id="cond:menor" nombre="ve.com.digitel.bbrecdisc.filtros.Menor" />
+			<servicioDelegado id="stm:set" nombre="ve.com.digitel.bbrecdisc.command.Set" />
+			<servicioDelegado id="stm:setAll" nombre="ve.com.digitel.bbrecdisc.command.SetAll" />
+		</delegador>
+
+		<delegador id="VerificarStatusRIM" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.VerificarStatusBDDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>dataSource</name>
+					<value>application.bbrecdisc.historico.datasource</value>
+				</initParam>
+				<initParam>
+					<name>procedure</name>
+					<value>application.bbrecdisc.historico.verificar.status</value>
+				</initParam>
+				<initParam>
+					<name>accionComparar</name>
+					<value>application.bbrecdisc.historico.verificar.accioncomparar</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="RegistrarAccionRIMBD" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.RegistrarCambioRIMBDDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>dataSource</name>
+					<value>application.bbrecdisc.historico.datasource</value>
+				</initParam>
+				<initParam>
+					<name>procedure</name>
+					<value>application.bbrecdisc.historico.registrar.procedure</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="DesconectarRIMRoboExtravio" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.DesconexionRIMILDelegator">
+			<initParams>
+				<initParam>
+					<name>endPointURL</name>
+					<value>application.bbrecdisc.hlr.endpointurl</value>
+				</initParam>
+				<initParam>
+					<name>SOAPActionValue</name>
+					<value>application.bbrecdisc.hlr.soapaction</value>
+				</initParam>
+				<initParam>
+					<name>NE_TYPE</name>
+					<value>application.bbrecdisc.hlr.ne_type</value>
+				</initParam>
+				<initParam>
+					<name>REQ_USER</name>
+					<value>application.bbrecdisc.hlr.req_user</value>
+				</initParam>
+				<initParam>
+					<name>REQ_TYPE</name>
+					<value>application.bbrecdisc.hlr.req_type</value>
+				</initParam>
+				<initParam>
+					<name>WS_URL</name>
+					<value>application.bbrecdisc.hlr.ws_url</value>
+				</initParam>
+				<initParam>
+					<name>IL_USER</name>
+					<value>application.bbrecdisc.hlr.user</value>
+				</initParam>
+				<initParam>
+					<name>IL_PSW</name>
+					<value>application.bbrecdisc.hlr.password</value>
+				</initParam>
+				<initParam>
+					<name>REPLY_TO_ADDRESS</name>
+					<value>application.bbrecdisc.hlr.reply_to_address</value>
+				</initParam>
+				<initParam>
+					<name>REQ_OBJ</name>
+					<value>application.bbrecdisc.hlr.req_obj</value>
+				</initParam>
+				<initParam>
+					<name>timeOutHLR</name>
+					<value>application.bbrecdisc.hlr.timeout</value>
+				</initParam>
+				<initParam>
+					<name>SERVICE_REQUEST</name>
+					<value>application.bbrecdisc.hlr.service_request</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="ConectarRIMRoboExtravio" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.ReconexionRIMILDelegator">
+			<initParams>
+				<initParam>
+					<name>endPointURL</name>
+					<value>application.bbrecdisc.hlr.endpointurl</value>
+				</initParam>
+				<initParam>
+					<name>SOAPActionValue</name>
+					<value>application.bbrecdisc.hlr.soapaction</value>
+				</initParam>
+				<initParam>
+					<name>NE_TYPE</name>
+					<value>application.bbrecdisc.hlr.ne_type</value>
+				</initParam>
+				<initParam>
+					<name>REQ_USER</name>
+					<value>application.bbrecdisc.hlr.req_user</value>
+				</initParam>
+				<initParam>
+					<name>REQ_TYPE</name>
+					<value>application.bbrecdisc.hlr.req_type</value>
+				</initParam>
+				<initParam>
+					<name>WS_URL</name>
+					<value>application.bbrecdisc.hlr.ws_url</value>
+				</initParam>
+				<initParam>
+					<name>IL_USER</name>
+					<value>application.bbrecdisc.hlr.user</value>
+				</initParam>
+				<initParam>
+					<name>IL_PSW</name>
+					<value>application.bbrecdisc.hlr.password</value>
+				</initParam>
+				<initParam>
+					<name>REPLY_TO_ADDRESS</name>
+					<value>application.bbrecdisc.hlr.reply_to_address</value>
+				</initParam>
+				<initParam>
+					<name>REQ_OBJ</name>
+					<value>application.bbrecdisc.hlr.req_obj</value>
+				</initParam>
+				<initParam>
+					<name>timeOutHLR</name>
+					<value>application.bbrecdisc.hlr.timeout</value>
+				</initParam>
+				<initParam>
+					<name>SERVICE_REQUEST</name>
+					<value>application.bbrecdisc.hlr.service_request</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="EncolarResponseIL" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.ResponseILQueueSubmiterDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>queue</name>
+					<value>application.bbrecdisc.solicitud.queue</value>
+				</initParam>
+				<initParam>
+					<name>factory</name>
+					<value>application.bbrecdisc.solicitud.factory</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="EliminarRegistroRIMBD" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.EliminarRegistroBDRIMDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>dataSource</name>
+					<value>application.bbrecdisc.historico.datasource</value>
+				</initParam>
+				<initParam>
+					<name>procedure</name>
+					<value>application.bbrecdisc.historico.eliminar.procedure</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="ActualizarStatusRIM" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.ActualizarRegistroBDRIMDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>dataSource</name>
+					<value>application.bbrecdisc.historico.datasource</value>
+				</initParam>
+				<initParam>
+					<name>procedure</name>
+					<value>application.bbrecdisc.historico.actualizar.procedure</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="ActualizarStatusErrorIL" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.ActualizarRegistroBDErrorILDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>dataSource</name>
+					<value>application.bbrecdisc.historico.datasource</value>
+				</initParam>
+				<initParam>
+					<name>procedure</name>
+					<value>application.bbrecdisc.historico.actualizar.procedure</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="PreviousStateValidate" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.PreviousStateRTBSDelegator">
+			<initParams>
+				<initParam>
+					<name>endPointURL</name>
+					<value>application.bbrecdisc.rtbs.enpointurl</value>
+				</initParam>
+				<initParam>
+					<name>SOAPActionValue</name>
+					<value>application.bbrecdisc.rtbs.retrievesubscriber.soapactionvalue</value>
+				</initParam>
+				<initParam>
+					<name>user</name>
+					<value>application.bbrecdisc.rtbs.user</value>
+				</initParam>
+				<initParam>
+					<name>password</name>
+					<value>application.bbrecdisc.rtbs.password</value>
+				</initParam>
+				<initParam>
+					<name>timeOutRTBS</name>
+					<value>application.bbrecdisc.rtbs.timeoutrtbs</value>
+				</initParam>
+				<initParam>
+					<name>previousState</name>
+					<value>application.bbrecdisc.rtbs.previousState</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="EncolarSolicitudReconexion" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.ReconexionQueueSubmiterDelegator">
+			<initParams>
+				<initParam>
+					<name>context</name>
+					<value>application.bbrecdisc.contextfactory</value>
+				</initParam>
+				<initParam>
+					<name>providerURL</name>
+					<value>application.bbrecdisc.providerurl</value>
+				</initParam>
+				<initParam>
+					<name>queue</name>
+					<value>application.bbrecdisc.solicitud.queue</value>
+				</initParam>
+				<initParam>
+					<name>factory</name>
+					<value>application.bbrecdisc.solicitud.factory</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="InformacionBasicaRTBS" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.InfBasicaSuscriptorRTBSDelegator">
+			<initParams>
+				<initParam>
+					<name>endPointURL</name>
+					<value>application.bbrecdisc.rtbs.enpointurl</value>
+				</initParam>
+				<initParam>
+					<name>SOAPActionValue</name>
+					<value>application.bbrecdisc.rtbs.retrievesubscriber.soapactionvalue</value>
+				</initParam>
+				<initParam>
+					<name>user</name>
+					<value>application.bbrecdisc.rtbs.user</value>
+				</initParam>
+				<initParam>
+					<name>password</name>
+					<value>application.bbrecdisc.rtbs.password</value>
+				</initParam>
+				<initParam>
+					<name>timeOutRTBS</name>
+					<value>application.bbrecdisc.rtbs.timeoutrtbs</value>
+				</initParam>
+				<initParam>
+					<name>planesBB</name>
+					<value>application.bbrecdisc.rtbs.planesbb</value>
+				</initParam>
+			</initParams>
+		</delegador>
+		<delegador id="RecargasMTRRTBS" constructor="class"
+			nombre="ve.com.digitel.bbrecdisc.delegator.RecargasMTRRTBSDelegator">
+			<initParams>
+				<initParam>
+					<name>endPointURL</name>
+					<value>application.bbrecdisc.rtbs.enpointurl</value>
+				</initParam>
+				<initParam>
+					<name>SOAPActionValue</name>
+					<value>application.bbrecdisc.rtbs.retrievesubscriberhistory.soapactionvalue</value>
+				</initParam>
+				<initParam>
+					<name>user</name>
+					<value>application.bbrecdisc.rtbs.user</value>
+				</initParam>
+				<initParam>
+					<name>password</name>
+					<value>application.bbrecdisc.rtbs.password</value>
+				</initParam>
+				<initParam>
+					<name>timeOutRTBS</name>
+					<value>application.bbrecdisc.rtbs.timeoutrtbs</value>
+				</initParam>
+				<initParam>
+					<name>minutosBusqueda</name>
+					<value>application.bbrecdisc.rtbs.minutosBusqueda</value>
+				</initParam>
+			</initParams>
+		</delegador>
+	</delegadores>
+</config>
